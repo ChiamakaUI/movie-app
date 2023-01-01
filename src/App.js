@@ -1,24 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+// import './App.css';
+import {
+  defaultTheme,
+  ThemeProvider,
+  Preflight,
+} from "@xstyled/styled-components";
+// import { x } from '@xstyled/styled-components'
+import { QueryClient, QueryClientProvider } from "react-query";
+import Home from "./pages/Home";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Tv from "./pages/Tv";
+import Movies from "./pages/Movies";
+
+const theme = {
+  ...defaultTheme,
+  // Customize your theme here
+  fonts: {
+    outfit: "Outfit, sans-serif",
+  },
+};
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <ThemeProvider theme={theme}>
+        <Preflight />
+        {/* ... */}
+        <QueryClientProvider client={queryClient}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/movie" element={ <Movies />} />
+            <Route path="/tv" element={<Tv />} />
+          </Routes>
+        </QueryClientProvider>
+      </ThemeProvider>
+    </Router>
   );
 }
 
