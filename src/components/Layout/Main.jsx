@@ -27,6 +27,7 @@ const Main = (props) => {
           pb={{ _: 6, md: 10 }}
           mt={{ lg: 9 }}
           flexGrow={1}
+          color="#fff"
         >
           <BsSearch style={{ color: "#fff", fontSize: "1em" }} />
           <x.input
